@@ -4,18 +4,45 @@ Template for IMA's Creative Coding Lab
 Project A: Generative Creatures
 CCLaboratories Biodiversity Atlas 
 */
+let t = 0;
 function setup() {
     let canvas = createCanvas(800, 500);
     canvas.parent("p5-canvas-container")
 }
 
+
 function draw() {
     background(220);
 
-    for (let i = 0; i < 6; i++) {
-        // Move from bottom to top (no going back)
-        let x = width / 2 + sin(frameCount * 0.005 + i) * 50 + noise(i * 0.1, frameCount * 0.01) * 30;
-        let y = height - (frameCount * 0.5 + i * 50) % height; // This makes them move upward
+    for (let x = 0; x < width; x += 30) {
+        for (let y = 0; y < height; y += 30) {
+
+            let noiseValue = noise(x * 0.1, y * 0.1, t);
+
+            let col;
+            if (noiseValue < 0.5) {
+
+                col = color(noiseValue * 50 + 50, noiseValue * 200 + 50, noiseValue * 50 + 50);
+            } else {
+
+                col = color(noiseValue * 40 + 30, noiseValue * 100 + 60, noiseValue * 30 + 30);
+            }
+
+            fill(col);
+            noStroke();
+            rect(x, y, 30, 30);
+        }
+    }
+
+    t += 0.01;
+
+    for (let i = 3; i < 15; i++) {
+        let x = width / 2 + sin(frameCount * 0.00005 + i) * 200 + noise(i * 0.1, frameCount * 0.0001) * 100;
+
+        let yOffset = i * 95;
+        let y = height + 450 - ((frameCount * 0.5 + yOffset) % (height + 500));
+
+
 
         drawCreature(x, y);
     }
@@ -53,5 +80,6 @@ function drawHead() {
         triangle(-5, -145, 0, -135, 5, -145);
     }
 
+
     pop();
-}
+}  
