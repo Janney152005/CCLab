@@ -51,15 +51,10 @@ class JaneDancer {
     this.headAngle = 0;
   }
 
-  move() {
-    this.x += this.xSpd;
-    this.y += this.ySpd;
-  }
-
   update() {
     this.armAngle = sin(this.angle) * 30;
     this.headAngle = sin(this.angle) * 5;
-    this.angle += 0.05;
+    this.angle += 0.2;
   }
 
   display() {
