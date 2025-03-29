@@ -73,8 +73,11 @@ class JaneDancer {
 
     line(-25, -5, -20 + this.armAngle, 20);
     line(25, -5, 20 + this.armAngle, 20);
-    line(-10, 25, -10 + this.legAngle, 50);
-    line(10, 25, 10 + this.legAngle, 50);
+
+    line(-10, 25, -10, 50);
+    line(10, 25, 10, 50);
+
+
 
     // ⬆️ draw your dancer above ⬆️
     // ******** //
