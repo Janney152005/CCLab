@@ -10,6 +10,7 @@
   5. have fun.
 */
 
+
 let dancer;
 
 function setup() {
@@ -32,64 +33,76 @@ function draw() {
 
 // You only code inside this class.
 // Start by giving the dancer your name, e.g. LeonDancer.
+
 class JaneDancer {
   constructor(startX, startY) {
     this.x = startX;
     this.y = startY;
     this.size = 50;
-    this.angle = 0;
+    this.dia = random(20, 50);
+    this.xSpd = random(-1, 1);
+    this.ySpd = random(-1, 1);
     this.color = color(255, 100, 100);
+    this.angle = 0;
   }
 
+  move() {
+    this.x += this.xSpd;
+    this.y += this.ySpd;
+  }
+
+  update() {
+    this.x += sin(this.angle) * 2;
+    this.y += cos(this.angle) * 2;
+    this.angle += 0.05;
+  }
+
+  display() {
+
+    // the push and pop, along with the translate 
+    // places your whole dancer object at this.x and this.y.
+    // you may change its position on line 19 to see the effect.
+    push();
+    translate(this.x, this.y);
+
+    // ******** //
+    // ⬇️ draw your dancer from here ⬇️
+
+    fill(200, 200, 200);
+    stroke(255);
+    ellipse(0, 0, this.size, this.size);
+    ellipse(0, -30, this.size / 2, this.size / 2);
+    line(-20, 20, 20, 20);
+    line(-10, 50, -5, 30);
+    line(10, 50, 5, 30);
+
+    // ⬆️ draw your dancer above ⬆️
+    // ******** //
+
+    // the next function draws a SQUARE and CROSS
+    // to indicate the approximate size and the center point
+    // of your dancer.
+    // it is using "this" because this function, too, 
+    // is a part if your Dancer object.
+    // comment it out or delete it eventually.
+
+    this.drawReferenceShapes();
+
+    pop();
+  }
+
+  drawReferenceShapes() {
+    noFill();
+    stroke(255, 0, 0);
+    line(-5, 0, 5, 0);
+    line(0, -5, 0, 5);
+    stroke(255);
+    rect(-100, -100, 200, 200);
+    fill(255);
+    stroke(0);
+  }
 }
 
-update(); {
-  this.x += sin(this.angle) * 2;
-  this.y += cos(this.angle) * 2;
-  this.angle += 0.05;
-}
-
-display(); {
-  // the push and pop, along with the translate 
-  // places your whole dancer object at this.x and this.y.
-  // you may change its position on line 19 to see the effect.
-  push();
-  translate(this.x, this.y);
-
-  // ******** //
-  // ⬇️ draw your dancer from here ⬇️
-  fill(this.color);
-  stroke(255);
-  ellipse(0, 0, this.size, this.size);
-  ellipse(0, -30, this.size / 2, this.size / 2);
-  line(-20, 20, 20, 20);
-  line(-10, 50, -5, 30);
-  line(10, 50, 5, 30);
-
-  // ⬆️ draw your dancer above ⬆️
-  // ******** //
-
-  // the next function draws a SQUARE and CROSS
-  // to indicate the approximate size and the center point
-  // of your dancer.
-  // it is using "this" because this function, too, 
-  // is a part if your Dancer object.
-  // comment it out or delete it eventually.
-  this.drawReferenceShapes()
-
-  pop();
-}
-
-drawReferenceShapes(); {
-  noFill();
-  stroke(255, 0, 0);
-  line(-5, 0, 5, 0);
-  line(0, -5, 0, 5);
-  stroke(255);
-  rect(-100, -100, 200, 200);
-  fill(255);
-  stroke(0);
-}
 
 
 /*
