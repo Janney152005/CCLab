@@ -33,17 +33,19 @@ function draw() {
 
 // You only code inside this class.
 // Start by giving the dancer your name, e.g. LeonDancer.
-
 class JaneDancer {
   constructor(startX, startY) {
     this.x = startX;
     this.y = startY;
     this.size = 50;
     this.dia = random(20, 50);
-    this.xSpd = random(-1, 1);
-    this.ySpd = random(-1, 1);
+    this.xSpd = random(-1, 3);
+    this.ySpd = random(-2, 5);
     this.color = color(255, 100, 100);
     this.angle = 0;
+    this.armAngle = 0;
+    this.legAngle = 0;
+    this.headAngle = 0;
   }
 
   move() {
@@ -52,13 +54,12 @@ class JaneDancer {
   }
 
   update() {
-    this.x += sin(this.angle) * 2;
-    this.y += cos(this.angle) * 2;
+    this.armAngle = sin(this.angle) * 30;
+    this.headAngle = sin(this.angle) * 5;
     this.angle += 0.05;
   }
 
   display() {
-
     // the push and pop, along with the translate 
     // places your whole dancer object at this.x and this.y.
     // you may change its position on line 19 to see the effect.
@@ -67,14 +68,15 @@ class JaneDancer {
 
     // ******** //
     // ⬇️ draw your dancer from here ⬇️
-
     fill(200, 200, 200);
     stroke(255);
     ellipse(0, 0, this.size, this.size);
-    ellipse(0, -30, this.size / 2, this.size / 2);
-    line(-20, 20, 20, 20);
-    line(-10, 50, -5, 30);
-    line(10, 50, 5, 30);
+    ellipse(0, -25 + this.headAngle, this.size / 2, this.size / 2); // Head, moving up and down
+
+    line(-25, -5, -20 + this.armAngle, 20);
+    line(25, -5, 20 + this.armAngle, 20);
+    line(-10, 25, -10 + this.legAngle, 50);
+    line(10, 25, 10 + this.legAngle, 50);
 
     // ⬆️ draw your dancer above ⬆️
     // ******** //
@@ -85,9 +87,7 @@ class JaneDancer {
     // it is using "this" because this function, too, 
     // is a part if your Dancer object.
     // comment it out or delete it eventually.
-
     this.drawReferenceShapes();
-
     pop();
   }
 
