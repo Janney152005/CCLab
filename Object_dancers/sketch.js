@@ -29,6 +29,9 @@ function draw() {
 
   dancer.update();
   dancer.display();
+
+  dancer.x = mouseX;
+  dancer.y = mouseY;
 }
 
 // You only code inside this class.
